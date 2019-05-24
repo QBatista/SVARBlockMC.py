@@ -7,8 +7,8 @@ import os
 
 DESCRIPTION = "A package for doing exact Bayesian inference on structural VAR"
 
-setup(name='knightian_model',
-      packages=['knightian_model'],
+setup(name='svar_block_mc',
+      packages=['svar_block_mc'],
       version=0.1,
       description=DESCRIPTION,
       author='Quentin Batista',
@@ -20,3 +20,4 @@ setup(name='knightian_model',
           'jaxlib',
           ]
       )
+
