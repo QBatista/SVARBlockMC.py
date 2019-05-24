@@ -1,0 +1,43 @@
+# Travis Configuration for SVARBlockMC.py
+#
+
+sudo: false        #Use new Container Infrastructure
+language: python
+
+cache:
+  pip: true
+  directories:
+    # osx-specific caches
+    - $HOME/Library/Caches/pip
+
+matrix:
+  include:
+    - python: 3.6
+    - os: osx
+      osx_image: xcode10
+      sudo: required
+      env: TRAVIS_PYTHON_VERSION=3.7
+      language: generic
+      before_install:
+      - pip install virtualenv
+      - virtualenv env -p python3
+      - source env/bin/activate
+
+notifications:
+  email: false
+
+branches:
+  only:
+    - master
+
+install:
+  - pip install -U pip scipy jax jaxlib pytest flake8 codecov
+  - python setup.py install
+
+script:
+  - flake8 --select F401, F405,E231 svar_block_MC
+  - pytest
+
+after_success:
+  - codecov
+
