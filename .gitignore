@@ -1,0 +1,12 @@
+*.pyc
+*.ipynb_checkpoints*
+
+build/
+/dist/
+svar_block_mc.egg-info/
+*.DS_Store
+*.TODO
+*.noseids
+*.coverage
+*.h5
+
