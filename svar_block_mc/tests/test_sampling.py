@@ -5,7 +5,7 @@ Tests for `sampling.py`
 
 import jax.numpy as np
 from jax import random
-from ..sampling import gen_samples_A_L, gen_samples_A_ii_0, gen_samples_C_i
+from svar_block_mc import gen_samples_A_L
 import pytest
 import copy
 
@@ -63,4 +63,3 @@ class TestSampling:
             inputs_new[invalid_input_inds[i]] = invalid_inputs[i]
             with pytest.raises(ValueError):
                 gen_samples_A_L(*inputs_new)
-

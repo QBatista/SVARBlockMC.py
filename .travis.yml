@@ -10,18 +10,12 @@ cache:
     # osx-specific caches
     - $HOME/Library/Caches/pip
 
-matrix:
-  include:
-    - python: 3.6
-    - os: osx
-      osx_image: xcode10
-      sudo: required
-      env: TRAVIS_PYTHON_VERSION=3.7
-      language: generic
-      before_install:
-      - pip install virtualenv
-      - virtualenv env -p python3
-      - source env/bin/activate
+dist: xenial
+
+language: python
+
+python: 
+    - "3.7"
 
 notifications:
   email: false
@@ -30,13 +24,20 @@ branches:
   only:
     - master
 
+before_install:
+  - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+  - bash miniconda.sh -b -p $HOME/miniconda
+  - export PATH="$HOME/miniconda/bin:$PATH"
+  - conda update --yes conda
+  - conda config --add channels conda-forge
+
 install:
-  - pip install -U pip scipy jax jaxlib pytest flake8 codecov
+  - pip install -U pip scipy jax jaxlib pytest flake8 codecov pytest-cov
   - python setup.py install
 
 script:
   - flake8 --select F401, F405,E231 svar_block_MC
-  - pytest
+  - pytest --cov=svar_block_mc
 
 after_success:
   - codecov

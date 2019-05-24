@@ -21,7 +21,7 @@ def gen_samples_A_L(keys_A_ii_0, keys_C_i, samples_nb, T, S_C_hat, C_hat,
     Parameters
     -----------
     keys_A_ii_0 : list
-        A list of PRNG keys, one for each block, used to sample 
+        A list of PRNG keys, one for each block, used to sample
         :math:`A_{ii}\left(0\right)`.
 
     keys_C_i : list
@@ -70,11 +70,11 @@ def gen_samples_A_L(keys_A_ii_0, keys_C_i, samples_nb, T, S_C_hat, C_hat,
                          " length of S_C_hat.")
 
     if n != len(keys_C_i):
-        raise ValueError("Number of keys for sampling C_i must match the" + 
+        raise ValueError("Number of keys for sampling C_i must match the" +
                          " length of S_C_hat.")
- 
+
     if n != len(keys_C_i):
-        raise ValueError("The length of C_hat must match the length of" + 
+        raise ValueError("The length of C_hat must match the length of" +
                          " S_C_hat.")
 
     if n != len(keys_C_i):
@@ -176,6 +176,5 @@ def _check_valid_params(S_i_C_hat_i, C_i_hat, X_i_T_X_i_inv):
         raise ValueError("Each element of X_T_X_inv must be a square matrix.")
 
     if X_i_T_X_i_inv.shape[0] != C_i_hat.shape[0]:
-        raise ValueError("The dimensions of elements of X_T_X_inv and C_hat must" +
-                         " match appropriately.")
-
+        raise ValueError("The dimensions of elements of X_T_X_inv and C_hat" +
+                         " must match appropriately.")
